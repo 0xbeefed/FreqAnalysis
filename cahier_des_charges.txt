@@ -1,0 +1,4 @@
+Compter le nombre d’occurrences de chaque caractère différents d’un texte en latin_1;
+Pouvoir déterminer le(s) caractère(s) le(s) plus présent dans un texte ;
+Évolution : Réaliser une interface graphique simple, puis avec des menus d’option
+Évolution : compatibilité UTF_8 avec système de « familles »
