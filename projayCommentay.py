@@ -19,7 +19,7 @@ def drawFamily(char, data):
         cache.append(family[i])
         
     items = sorted(cache, key=lambda x: x[1], reverse=True)
-    colors = ['#' + str(hex(i)[2:].zfill(6)) for i in range(0, 16581375, int(16581375/len(family)))] # 16 581 375 correspond au nombre de couleur differentes possible pour les valeurs R, G et B entre 0 et 255.
+    colors = ['#' + str(hex(i)[2:].zfill(6)) for i in range(0, 16581375, int(16581375/len(family)))] # 16 581 375 correspond au nombre de couleurs differentes possibles pour les valeurs R, G et B entre 0 et 255.
     
     for i in range(len(items)):
         degrees = (items[i][1]/totalValue) * 360 # Calcul du poucentage de la famille que l'item représente.
@@ -98,7 +98,7 @@ def decodeFromFile(path):
     return result
 
 def load():
-    """Fonction qui créer une fenêtre de dialogue et appelle les fonctions "decodeFromFile" et "createGraph"."""
+    """Fonction qui crée une fenêtre de dialogue et appelle les fonctions "decodeFromFile" et "createGraph"."""
     path = filedialog.askopenfilename(initialdir=os.getcwd() + "/librairie/", title="Analyse frequencielle", filetypes=[('Text Files', "*.txt")])
     if (path != ""):
         titleLabel.config(text=path)
@@ -136,7 +136,7 @@ def createGraph(data):
         canvas.create_line(x0, y0, x1, y1)
         canvas.create_text(10, 20 + i * sizeBetweenLine, text = str(maxLineIndex - (i * 5)))
 
-    for i in range(totalLength + 1): # Trace les petites lignes verticales qui délimitent les espaces pour chaque famille de caractère, comme il y a 1 ligne de plus que de caractère on créer n + 1 lignes avec n le nombre de caractère.
+    for i in range(totalLength + 1): # Trace les petites lignes verticales qui délimitent les espaces pour chaque famille de caractère, comme il y a 1 ligne de plus que de caractère on crée n + 1 lignes avec n le nombre de caractère.
         x0 = 20 + i*sizeCaracter
         y0 = 20 + sizeBetweenLine * (maxLineIndex // 5)
         x1 = 20 + i*sizeCaracter
@@ -195,7 +195,7 @@ class Rectangle:
         canvas.coords(self.column, self.x0, self.y0, self.x1, self.y1 + 1) # self.y1 + 1 car le contour du rectangle fais 1px et n'est pas prit en compte dans sa taille.
 
     def above(self):
-        """Méthode de la classe Rectangle. Change la couleur du rectangle sur lequel est le curseur et appel la fonction "drawFamily". Méthode appellée quand le curseur se trouve sur ce rectangle."""
+        """Méthode de la classe Rectangle. Change la couleur du rectangle sur lequel est le curseur et appelle la fonction "drawFamily". Méthode appellée quand le curseur se trouve sur ce rectangle."""
         canvas.itemconfig(self.column, fill='#2f6788', state=NORMAL)
         drawFamily(self.char, self.data)
         
@@ -207,7 +207,7 @@ outline = '#275671'
 color = '#4fade3'
      
 root = Tk()
-root.state('zoomed')# 'zoomed' correspond au mode pleine écran.
+root.state('zoomed')# 'zoomed' correspond au mode plein écran.
 parameterList = []
 columnList = []
 menu = Menu(root)
@@ -221,7 +221,7 @@ titleLabel = Label(root, text="Merci de charger un texte à l'aide du menu ci de
 titleLabel.grid(row=0, column=0)
 
 height = root.winfo_screenheight() - 110 
-width = root.winfo_screenwidth() - 300 # On laisse 300px de disponible pour la création du diagramme circulaire.
+width = root.winfo_screenwidth() - 300 # On laisse 300px de disponibles pour la création du diagramme circulaire.
 
 graphLabel = Label(root)
 graphLabel.grid(row=1, column=0)
