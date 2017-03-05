@@ -23,7 +23,7 @@ def drawFamily(char, data):
     
     for i in range(len(items)):
         degrees = (items[i][1]/totalValue) * 360 # Calcul du poucentage de la famille que l'item représente.
-        if (degrees > 0.1): # L'affichage d'un arc de moins de 0.1° provoque un bug graphique.
+        if (degrees > 0.5): # L'affichage d'un arc de moins de 0.5° provoque un bug graphique.
             chart.create_arc(20, 20, 280, 280, style='pieslice', start=startAngle, extent=degrees, outline='', fill=colors[i])
             chart.create_oval(90, 90, 210, 210, outline='', fill='#ffffff')
             startAngle += degrees
@@ -34,7 +34,7 @@ def drawFamily(char, data):
             chart.create_oval(90, 90, 210, 210, outline=outline, fill='#ffffff')
             value = '100%'
         else:
-            value = str((int((items[i][1] / totalValue) * 100))) + '%'
+            value = str((int((items[i][1] / totalValue) * 1000)/10)) + '%' #On veux une précision à 0.1% dans le label
         chart.create_text(150, 300 + i * 25, text=items[i][0] + ' : ' + value, fill=colors[i], font=('Arial', 14))
         
     if int(totalValue * 100) < 1:
@@ -99,7 +99,7 @@ def decodeFromFile(path):
 
 def load():
     """Fonction qui crée une fenêtre de dialogue et appelle les fonctions "decodeFromFile" et "createGraph"."""
-    path = filedialog.askopenfilename(initialdir=os.getcwd() + "/librairie/", title="Analyse frequencielle", filetypes=[('Text Files', "*.txt")])
+    path = filedialog.askopenfilename(initialdir=os.getcwd() + "/bibliotheque/", title="Analyse frequencielle", filetypes=[('Text Files', "*.txt")])
     if (path != ""):
         titleLabel.config(text=path)
         data = decodeFromFile(path)
